@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="f8a53f6d-a840-4937-8791-9f8b63797966" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="sample_cloud_deployFlow" doc:id="27e7715d-abda-43d5-8b2f-b86217791e50" >
+		<http:listener doc:name="Listener" doc:id="1a43f493-5a6b-441d-93a6-c1b083422322" config-ref="HTTP_Listener_config" path="/cloud"/>
+		<logger level="INFO" doc:name="Logger" doc:id="c804b274-89a9-40af-9730-e441308baf79" message="The payload is : #[payload]"/>
+		<set-payload value="Deploting the app to cloud " doc:name="Set Payload" doc:id="20c917e2-8243-4219-b3e2-3cb449f413a4" />
+		<logger level="INFO" doc:name="Logger" doc:id="8e3e7269-88a7-4677-85ea-8a44d193371c" message="payload"/>
+	</flow>
+</mule>
